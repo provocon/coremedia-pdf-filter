@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.WriteListener;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
@@ -91,6 +92,19 @@ public final class PdfResponseWrapper extends HttpServletResponseWrapper {
             public void write(int b) throws IOException {
                 baostr.write(b);
             }
+
+
+            @Override
+            public boolean isReady() {
+                return true;
+            }
+
+
+            @Override
+            public void setWriteListener(WriteListener wl) {
+                // Not implemented
+            }
+
         };
     }
 
