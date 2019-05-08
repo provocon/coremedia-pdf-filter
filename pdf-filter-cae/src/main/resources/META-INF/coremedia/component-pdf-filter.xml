@@ -10,7 +10,7 @@
                            http://www.coremedia.com/2007/coremedia-spring-beans-customization
                            http://www.coremedia.com/2007/coremedia-spring-beans-customization.xsd">
 
-  <bean class="de.provocon.coremedia.cms.view.pdf.PdfCreationFilter" name="pdfFilter">
+  <bean class="de.provocon.coremedia.cms.view.PdfCreationFilter" name="pdfFilter">
     <property name="pattern" value="${pdf.filter.uri.pattern}"/>
   </bean>
 
