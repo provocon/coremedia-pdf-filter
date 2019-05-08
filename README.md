@@ -67,6 +67,20 @@ mvn dependency:copy -Dartifact=com.coremedia.tools.extensions:extensions:LATEST:
 java -jar tool/extensions.jar --task synchronize --extension-config-file  workspace-configuration/extensions/extension-config.properties --task-input-file workspace-configuration/extensions/managed-extensions.txt
 ```
 
+You will encounter dependency convergence problem in recent workspaces which
+can be resolved in the blueprint-parent pom.
+
+Add in blueprint-parent/pom.xml: (dependencyManagement-Section)
+
+```
+      <!-- conflict resolution -->
+      <dependency>
+        <groupId>org.apache.pdfbox</groupId>
+        <artifactId>pdfbox</artifactId>
+        <version>2.0.15</version>
+      </dependency>
+```
+
 
 ## Operations
 
