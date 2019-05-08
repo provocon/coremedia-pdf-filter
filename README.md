@@ -35,7 +35,7 @@ CACHE WITHIN PROVOCON PDF FILTER FOR 3600s
 
 ## Integration
 
-Add our this extension as a git submodule for the extensions directory to your 
+Add this extension as a git submodule for the extensions directory to your
 project's workspace.
 
 ```
