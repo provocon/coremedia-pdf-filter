@@ -21,7 +21,9 @@
   <properties>
     <coremedia.project.extension.name>Pdf Filter</coremedia.project.extension.name>
     <coremedia.project.extension.modelVersion>1.0</coremedia.project.extension.modelVersion>
-    <lombok.version>1.16.12</lombok.version>
+    <lombok.version>1.18.8</lombok.version>
+    <groovy.version>2.5.7</groovy.version>
+    <rototor.version>0.23</rototor.version>
     <openhtmltopdf.version>0.0.1-RC20</openhtmltopdf.version>
   </properties>
 
@@ -73,11 +75,22 @@
         <artifactId>openhtmltopdf-slf4j</artifactId>
         <version>${openhtmltopdf.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.openhtmltopdf</groupId>
+        <artifactId>openhtmltopdf-slf4j</artifactId>
+        <version>${openhtmltopdf.version}</version>
+      </dependency>
+      <!-- override default from above dependency -->
+      <dependency>
+        <groupId>de.rototor.pdfbox</groupId>
+        <artifactId>graphics2d</artifactId>
+        <version>${rototor.version}</version>
+      </dependency>
       <!-- we use this for testing only -->
       <dependency>
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy</artifactId>
-        <version>2.4.7</version>
+        <version>${groovy.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
