@@ -1,2 +1,6 @@
 /pdf-filter-cae/target/
 /pdf-filter-lib/target/
+*.iml
+*.ipr
+*.iws
+.idea/
