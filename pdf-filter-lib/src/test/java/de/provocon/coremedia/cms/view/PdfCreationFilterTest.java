@@ -15,10 +15,10 @@
  */
 package de.provocon.coremedia.cms.view;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 
 /**
@@ -31,7 +31,7 @@ public class PdfCreationFilterTest {
     private PdfCreationFilter pdfCreationFilter;
 
 
-    @Before
+    @BeforeTest
     public void prepare() {
         pdfCreationFilter = new PdfCreationFilter();
         pdfCreationFilter.setPattern("\\?template=pdf");
