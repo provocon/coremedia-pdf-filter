@@ -24,8 +24,8 @@
     <lombok.version>1.18.8</lombok.version>
     <testng.version>6.14.3</testng.version>
     <groovy.version>2.5.7</groovy.version>
-    <rototor.version>0.23</rototor.version>
-    <openhtmltopdf.version>0.0.1-RC20</openhtmltopdf.version>
+    <rototor.version>0.24</rototor.version>
+    <openhtmltopdf.version>0.0.1-RC21</openhtmltopdf.version>
   </properties>
 
   <modules>
