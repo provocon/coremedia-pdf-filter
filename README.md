@@ -96,10 +96,6 @@ CoreMedia workspace, are
 
 Please use the [issues][issues] section of this repository at [github][github] 
 for feedback. 
-## Feedback
-
-Please use the [issues][issues] section of this repository at [github][github] 
-for feedback. 
 
 [openhtmltopdf]: https://github.com/danfickle/openhtmltopdf
 [issues]: https://github.com/provocon/coremedia-pdf-filter/issues
