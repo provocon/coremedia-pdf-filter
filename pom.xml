@@ -21,9 +21,9 @@
   <properties>
     <coremedia.project.extension.name>Pdf Filter</coremedia.project.extension.name>
     <coremedia.project.extension.modelVersion>1.0</coremedia.project.extension.modelVersion>
-    <lombok.version>1.18.8</lombok.version>
+    <lombok.version>1.18.10</lombok.version>
     <testng.version>6.14.3</testng.version>
-    <groovy.version>2.5.7</groovy.version>
+    <groovy.version>2.5.8</groovy.version>
     <rototor.version>0.24</rototor.version>
     <openhtmltopdf.version>1.0.0</openhtmltopdf.version>
   </properties>
