@@ -13,7 +13,8 @@ The libraries this extension depends on allow for a relaxed licensing footprint.
 ## Compatibility
 
 This extension can be integrated into blueprint workspaces starting from
-platform version 1707. The latest tested version to be used is 1904.
+platform version 1707. The latest tested version to be used is 1904. Use the
+corresponding branch for integration.
 
 ## Usage
 
