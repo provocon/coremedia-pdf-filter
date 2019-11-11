@@ -7,20 +7,26 @@ HTML content for URLs following a certain URI pattern is transformed into PDF.
 Since transformation might be too slow and CPU consuming for eager 
 regeneration, a simple cachine mechanism is included.
 
-The libraries this extension depends on allow for a relaxed licensing footprint.
+The libraries, this extension depends on, allow for a relaxed licensing
+footprint.
 
 
 ## Compatibility
 
+CoreMedia Blueprints CMS-9, LiveContext 3, and Content Cloud 10 are supported.
+
 This extension can be integrated into blueprint workspaces starting from
-platform version 1707. The latest tested version to be used is 1904. Use the
-corresponding branch for integration.
+platform version 1707. The latest version in production use is 1904. The latest
+available version is meant for 1907. Use the corresponding branch for
+integration. Also this README.md is version specific. So switch branches before
+read the integration details.
+
 
 ## Usage
 
 The templates used on pages to be transformed may only output HTML which can
-be handled by the [OpenHTMLtoPDF][openhtmltopdf] converter library which in turn 
-uses Apache PDF Box.
+be handled by the [OpenHTMLtoPDF][openhtmltopdf] converter library which in
+turn uses Apache PDF Box.
 
 The filter transforms the HTML code if the requested URI matches a pattern
 given by regular expressions. The default pattern is `\\?view=pdf`.
@@ -43,29 +49,10 @@ project's workspace.
 git submodule add https://github.com/provocon/coremedia-pdf-filter.git apps/cae/modules/extensions/pdf-filter
 ```
 
-Add the root module to `apps/cae/modules/extensions/pom.xml`
+Activate the extension with the CoreMedia extension management tool.
 
 ```
-...
-    <module>external-preview</module>
-    <module>pdf-filter</module>
-    <module>custom-topic-pages</module>
-...
-```
-
-Add the extension to the list of managed extensions at the end of 
-`workspace-config/extensions/managed-extensions.txt` (or the extensions 
-collection file in use in your project):
-
-```
-echo "pdf-filter" >> workspace-configuration/extensions/managed-extensions.txt
-```
-
-Update the extension dependencies via the Coremedia extension tool like with
-
-```
-mvn dependency:copy -Dartifact=com.coremedia.tools.extensions:extensions:LATEST:jar:all -DlocalRepositoryDirectory=extensions-tool -Dtransitive=false -DoutputDirectory=tool -Dmdep.stripVersion=true -Dmdep.stripClassifier=true
-java -jar tool/extensions.jar --task synchronize --extension-config-file  workspace-configuration/extensions/extension-config.properties --task-input-file workspace-configuration/extensions/managed-extensions.txt
+mvn extensions:sync -Denable=pdf-filter -f workspace-configuration/extensions/pom.xml
 ```
 
 You will encounter dependency convergence problem in recent workspaces which
