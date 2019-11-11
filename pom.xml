@@ -29,7 +29,6 @@
   </properties>
 
   <modules>
-    <module>pdf-filter-lib</module>
     <module>pdf-filter-cae</module>
   </modules>
 
