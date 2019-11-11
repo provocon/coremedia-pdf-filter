@@ -40,10 +40,10 @@ Add this extension as a git submodule for the extensions directory to your
 project's workspace.
 
 ```
-git submodule add https://github.com/provocon/coremedia-pdf-filter.git modules/extensions/pdf-filter
+git submodule add https://github.com/provocon/coremedia-pdf-filter.git apps/cae/modules/extensions/pdf-filter
 ```
 
-Add the root module to `modules/extensions/pom.xml`
+Add the root module to `apps/cae/modules/extensions/pom.xml`
 
 ```
 ...
