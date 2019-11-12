@@ -11,7 +11,7 @@
   </parent>
 
   <name>Provocon PDF Filter Extension</name>
-  <artifactId>pdf-filter</artifactId>
+  <artifactId>cae.pdf-filter</artifactId>
   <packaging>pom</packaging>
   
   <organisation>
