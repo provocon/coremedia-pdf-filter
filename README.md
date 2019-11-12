@@ -55,20 +55,6 @@ Activate the extension with the CoreMedia extension management tool.
 mvn extensions:sync -Denable=pdf-filter -f workspace-configuration/extensions/pom.xml
 ```
 
-You will encounter dependency convergence problem in recent workspaces which
-can be resolved in the blueprint-parent pom.
-
-Add in blueprint-parent/pom.xml: (dependencyManagement-Section)
-
-```
-      <!-- conflict resolution -->
-      <dependency>
-        <groupId>org.apache.pdfbox</groupId>
-        <artifactId>pdfbox</artifactId>
-        <version>2.0.15</version>
-      </dependency>
-```
-
 
 ## Operations
 
