@@ -5,7 +5,7 @@
 
   <parent>
     <groupId>com.coremedia.blueprint</groupId>
-    <artifactId>pdf-filter</artifactId>
+    <artifactId>cae.pdf-filter</artifactId>
     <version>1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
