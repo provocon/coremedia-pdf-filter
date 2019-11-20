@@ -13,16 +13,16 @@
   <name>Provocon PDF Filter Extension</name>
   <artifactId>cae.pdf-filter</artifactId>
   <packaging>pom</packaging>
-  
-  <organisation>
+
+  <organization>
     <name>Provocon</name>
-  </organisation>
+    <url>https://www.provocon.eu/</url>
+  </organization>
 
   <properties>
     <coremedia.project.extension.name>Pdf Filter</coremedia.project.extension.name>
     <coremedia.project.extension.modelVersion>1.0</coremedia.project.extension.modelVersion>
     <lombok.version>1.18.10</lombok.version>
-    <testng.version>7.0.0</testng.version>
     <groovy.version>2.5.8</groovy.version>
     <rototor.version>0.24</rototor.version>
     <annotations.version>1.3.5</annotations.version>
@@ -86,17 +86,6 @@
         <groupId>de.rototor.pdfbox</groupId>
         <artifactId>graphics2d</artifactId>
         <version>${rototor.version}</version>
-      </dependency>
-      <!-- we use this for testing only -->
-      <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>${testng.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy</artifactId>
-        <version>${groovy.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

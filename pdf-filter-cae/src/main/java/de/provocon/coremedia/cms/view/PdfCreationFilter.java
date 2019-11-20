@@ -16,24 +16,19 @@
 package de.provocon.coremedia.cms.view;
 
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.regex.Pattern;
-import javax.annotation.PostConstruct;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.regex.Pattern;
 
 
 /**
@@ -42,34 +37,29 @@ import org.apache.commons.lang3.StringUtils;
  * @author Martin Goellnitz
  */
 @Slf4j
+@Component
+@PropertySource("classpath:/META-INF/coremedia/component-pdf-filter.properties")
 public class PdfCreationFilter implements Filter {
 
     private final static String MARKER = "CACHE WITHIN PROVOCON PDF FILTER FOR";
 
-    private Pattern pattern = Pattern.compile("\\?view=pdf");
-
+    @Value("${pdf.filter.uri.pattern}")
+    private String configuredUriPattern;
+    private Pattern pattern;
     private String cacheFolder;
-
-
-    public void setPattern(String regex) {
-        pattern = Pattern.compile(regex);
-    }
-
 
     @Override
     public void destroy() {
         // comment empty method. Nothing to be done in this implementation of the interface.
     }
 
-
-    protected File getLocalFile(String filename) {
-        return new File(cacheFolder+"/"+filename);
+    private File getLocalFile(String filename) {
+        return new File(cacheFolder + "/" + filename);
     }
 
-
-    protected boolean matches(HttpServletRequest request) {
+    boolean matches(HttpServletRequest request) {
         String query = request.getQueryString();
-        String requestUri = request.getRequestURI()+(StringUtils.isEmpty(query) ? "" : "?"+query);
+        String requestUri = request.getRequestURI() + (StringUtils.isEmpty(query) ? "" : "?" + query);
         LOG.debug("matches({}) request uri '{}'", pattern, requestUri);
         boolean result = pattern.matcher(requestUri).find();
         LOG.info("matches({}) {}", result, requestUri);
@@ -94,9 +84,9 @@ public class PdfCreationFilter implements Filter {
             String pdfFilename = "pdf-filter-generated.pdf";
             String htmlFilename = "pdf-filter-original.html";
             try {
-                String baseName = request.getRequestURL().substring(request.getRequestURL().lastIndexOf("/")+1);
-                pdfFilename = baseName+".pdf";
-                htmlFilename = baseName+".html";
+                String baseName = request.getRequestURL().substring(request.getRequestURL().lastIndexOf("/") + 1);
+                pdfFilename = baseName + ".pdf";
+                htmlFilename = baseName + ".html";
             } catch (StringIndexOutOfBoundsException e) {
                 LOG.error("could not generate filename for pdf", e);
             }
@@ -116,13 +106,13 @@ public class PdfCreationFilter implements Filter {
                         htmlSource = new String(chars, "UTF-8");
                         LOG.debug("doFilter() html source size: {}", htmlSource.length());
                         int markerIndex = htmlSource.indexOf(MARKER);
-                        if (markerIndex>0) {
+                        if (markerIndex > 0) {
                             int endIndex = htmlSource.indexOf('s', markerIndex);
-                            String cacheTimeString = htmlSource.substring(markerIndex+MARKER.length()+1, endIndex);
+                            String cacheTimeString = htmlSource.substring(markerIndex + MARKER.length() + 1, endIndex);
                             LOG.debug("doFilter() found cache timing marker {}", cacheTimeString);
-                            long cacheTime = Long.parseLong(cacheTimeString)*1000;
+                            long cacheTime = Long.parseLong(cacheTimeString) * 1000;
                             long currentTime = System.currentTimeMillis();
-                            if (transformedFile.lastModified()+cacheTime>currentTime) {
+                            if (transformedFile.lastModified() + cacheTime > currentTime) {
                                 LOG.info("doFilter() file is newer than {}s - using cache.", cacheTimeString);
                                 process = false;
                             }
@@ -132,7 +122,7 @@ public class PdfCreationFilter implements Filter {
                 if (process) {
                     PdfResponseWrapper pdfResponseWrapper = new PdfResponseWrapper(response);
                     chain.doFilter(request, pdfResponseWrapper);
-                    if (pdfResponseWrapper.getStatus()>399) {
+                    if (pdfResponseWrapper.getStatus() > 399) {
                         LOG.info("doFilter() HTTP-Returncode was {}", pdfResponseWrapper.getStatus());
                         return;
                     }
@@ -144,13 +134,13 @@ public class PdfCreationFilter implements Filter {
                     htmlSource = htmlSource.replace("src=\"/blueprint/servlet/resource", "src=\"http://localhost:40980/blueprint/servlet/resource");
                     htmlSource = htmlSource.replace("src=\"/resource", "src=\"http://localhost:42180/blueprint/servlet/resource");
                     LOG.info("doFilter() content present");
-                    if (htmlSource.indexOf(MARKER)>0) {
+                    if (htmlSource.indexOf(MARKER) > 0) {
                         LOG.info("doFilter() writing file {}", transformedFile.getAbsolutePath());
                         try (FileOutputStream writer = new FileOutputStream(transformedFile)) {
                             writer.write(htmlSource.getBytes("UTF-8"));
                         }
                     }
-                    LOG.debug("doFilter() html source '{}'", htmlSource.substring(htmlSource.length()-1200));
+                    LOG.debug("doFilter() html source '{}'", htmlSource.substring(htmlSource.length() - 1200));
                     LOG.info("doFilter() html source length {}", htmlSource.length());
                     OutputStream outputStream = new FileOutputStream(originalFile);
                     PdfRendererBuilder builder = new PdfRendererBuilder();
@@ -167,14 +157,14 @@ public class PdfCreationFilter implements Filter {
                 response.reset();
                 response.resetBuffer();
                 response.setContentType("application/pdf");
-                response.setHeader("Content-Disposition", "inline;filename="+pdfFilename);
+                response.setHeader("Content-Disposition", "inline;filename=" + pdfFilename);
                 OutputStream outputStream = response.getOutputStream();
                 FileInputStream fis = new FileInputStream(originalFile);
                 IOUtils.copy(fis, outputStream, 1024000);
                 outputStream.flush();
                 fis.close();
                 if (LOG.isInfoEnabled()) {
-                    LOG.info("generated and delivered PDF data in {}ms, ", System.currentTimeMillis()-startTime);
+                    LOG.info("generated and delivered PDF data in {}ms, ", System.currentTimeMillis() - startTime);
                 }
             } catch (Exception e) {
                 LOG.error("doFilter()", e);
@@ -196,9 +186,10 @@ public class PdfCreationFilter implements Filter {
 
     @PostConstruct
     public void afterPropertiesSet() {
+        pattern = Pattern.compile(configuredUriPattern);
         LOG.info("afterPropertiesSet() PDF Creation Filter with pattern '{}'", pattern.pattern());
         // Try to default to temp folder of CAE in standard deployments
-        cacheFolder = System.getProperty("user.home")+"/current/temp";
+        cacheFolder = System.getProperty("user.home") + "/current/temp";
         if (!(new File(cacheFolder)).exists()) {
             cacheFolder = System.getProperty("user.home");
         }

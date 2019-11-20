@@ -55,6 +55,20 @@ Activate the extension with the CoreMedia extension management tool.
 mvn extensions:sync -Denable=pdf-filter -f workspace-configuration/extensions/pom.xml
 ```
 
+## Test
+When you make a call to your cae and the PDFFilter was successful integrated, you can see an HTTP-Response-Header, like 
+this:
+```
+HTTP/1.1 200
+X-PDFFilter: available
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+...
+```
+For a quick check on a commandline you can use curl (example url): 
+```shell script
+curl -I http://localhost:40980/blueprint/servlet/corporate-de-de
+```
 
 ## Operations
 
