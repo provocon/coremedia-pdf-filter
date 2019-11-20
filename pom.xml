@@ -23,6 +23,7 @@
     <coremedia.project.extension.name>Pdf Filter</coremedia.project.extension.name>
     <coremedia.project.extension.modelVersion>1.0</coremedia.project.extension.modelVersion>
     <lombok.version>1.18.10</lombok.version>
+    <testng.version>7.0.0</testng.version>
     <groovy.version>2.5.8</groovy.version>
     <rototor.version>0.24</rototor.version>
     <annotations.version>1.3.5</annotations.version>
@@ -86,6 +87,22 @@
         <groupId>de.rototor.pdfbox</groupId>
         <artifactId>graphics2d</artifactId>
         <version>${rototor.version}</version>
+      </dependency>
+      <!--
+        Lib's used for testing only
+        -->
+      <!-- We use testng instead of junit, because of its nicer software license -->
+      <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>${testng.version}</version>
+      </dependency>
+      <!-- Currently not used, but someday you might want to configure logback, and therefor the groovy config option is
+      much nicer than good old xml -->
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy</artifactId>
+        <version>${groovy.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

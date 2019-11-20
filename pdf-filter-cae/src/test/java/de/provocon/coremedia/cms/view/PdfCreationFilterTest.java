@@ -15,15 +15,13 @@
  */
 package de.provocon.coremedia.cms.view;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.testng.annotations.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 
 /**
@@ -31,9 +29,8 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Martin Goellnitz, Markus Schwarz
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = PdfFilterConfiguration.class)
-public class PdfCreationFilterTest {
+public class PdfCreationFilterTest extends org.springframework.test.context.testng.AbstractTestNGSpringContextTests{
     private static final String BASE_URL = "https://www.example.com/blueprint/servlet/de";
 
     @Autowired
