@@ -11,6 +11,12 @@ The libraries, this extension depends on, allow for a relaxed licensing
 footprint.
 
 
+## Feedback
+
+Please use the [issues][issues] section of this repository at [github][github]
+for feedback.
+
+
 ## Compatibility
 
 CoreMedia Blueprints CMS-9, LiveContext 3, and Content Cloud 10 are supported.
@@ -56,6 +62,26 @@ mvn extensions:sync -Denable=pdf-filter -f workspace-configuration/extensions/po
 ```
 
 
+## Test
+
+When you make a call to your cae and the PDFFilter was successful integrated,
+you can see an HTTP-Response-Header, like this:
+
+```
+HTTP/1.1 200
+X-PDFFilter: available
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+...
+```
+
+For a quick check on a commandline you can use curl (example url): 
+
+```
+curl -I http://localhost:40980/blueprint/servlet/corporate-de-de
+```
+
+
 ## Operations
 
 From time to time or through your monitoring have a look at the tmp directory
@@ -79,11 +105,6 @@ CoreMedia workspace, are
 * Apache PDF Box Licensed under the Apache 2.0 License
 * Lombok Licensed under the MIT License
 
-
-## Feedback
-
-Please use the [issues][issues] section of this repository at [github][github] 
-for feedback. 
 
 [openhtmltopdf]: https://github.com/danfickle/openhtmltopdf
 [issues]: https://github.com/provocon/coremedia-pdf-filter/issues

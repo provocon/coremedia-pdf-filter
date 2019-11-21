@@ -15,33 +15,29 @@
  */
 package de.provocon.coremedia.cms.view;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.test.context.ContextConfiguration;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
 /**
  * Test matching methods of PdfCreationFilter.
  *
- * @author Martin Goellnitz
+ * @author Martin Goellnitz, Markus Schwarz
  */
-public class PdfCreationFilterTest {
+@ContextConfiguration(classes = PdfFilterConfiguration.class)
+public class PdfCreationFilterTest extends org.springframework.test.context.testng.AbstractTestNGSpringContextTests {
+    
+    private static final String BASE_URL = "https://www.example.com/blueprint/servlet/de";
 
+    @Autowired
     private PdfCreationFilter pdfCreationFilter;
-
-
-    @BeforeTest
-    public void prepare() {
-        pdfCreationFilter = new PdfCreationFilter();
-        pdfCreationFilter.setPattern("\\?template=pdf");
-        pdfCreationFilter.afterPropertiesSet();
-    }
-
 
     @Test
     public void testPatternNotMatching() {
-        String uri = "https://www.example.com/blueprint/servlet/de/title?view=fragment&p13n_test=true&p13n_testcontext=0";
+        String uri = BASE_URL + "/title?view=fragment&p13n_test=true&p13n_testcontext=0";
         MockHttpServletRequest request = new MockHttpServletRequest("GET", uri);
         Assert.assertFalse(pdfCreationFilter.matches(request));
     }
@@ -49,7 +45,7 @@ public class PdfCreationFilterTest {
 
     @Test
     public void testPatternMatching() {
-        String uri = "https://www.example.com/blueprint/servlet/de/title?template=pdf&p13n_test=true&p13n_testcontext=0";
+        String uri = BASE_URL + "/title?template=pdf&p13n_test=true&p13n_testcontext=0";
         MockHttpServletRequest request = new MockHttpServletRequest("GET", uri);
         Assert.assertTrue(pdfCreationFilter.matches(request));
     }
@@ -57,7 +53,7 @@ public class PdfCreationFilterTest {
 
     @Test
     public void testPatternNotViewParameter() {
-        String uri = "https://www.example.com/blueprint/servlet/de/template=pdf/title?view=fragmentPreview";
+        String uri = BASE_URL + "/template=pdf/title?view=fragmentPreview";
         MockHttpServletRequest request = new MockHttpServletRequest("GET", uri);
         Assert.assertFalse(pdfCreationFilter.matches(request));
     }
@@ -65,7 +61,7 @@ public class PdfCreationFilterTest {
 
     @Test
     public void testPatternNotFirstParameter() {
-        String uri = "https://www.example.com/blueprint/servlet/de/template=pdf/title?a=b&template=pdf";
+        String uri = BASE_URL + "/template=pdf/title?a=b&template=pdf";
         MockHttpServletRequest request = new MockHttpServletRequest("GET", uri);
         Assert.assertFalse(pdfCreationFilter.matches(request));
     }
