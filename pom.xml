@@ -13,10 +13,11 @@
   <name>Provocon PDF Filter Extension</name>
   <artifactId>cae.pdf-filter</artifactId>
   <packaging>pom</packaging>
-  
-  <organisation>
+
+  <organization>
     <name>Provocon</name>
-  </organisation>
+    <url>https://www.provocon.de/</url>
+  </organization>
 
   <properties>
     <coremedia.project.extension.name>Pdf Filter</coremedia.project.extension.name>
@@ -87,12 +88,20 @@
         <artifactId>graphics2d</artifactId>
         <version>${rototor.version}</version>
       </dependency>
-      <!-- we use this for testing only -->
+
+      <!-- Libraries used for testing only -->
+      <!--
+           We avoid JUnit under EPL and use TestNG with ASF 2.0 instead:
+           https://www.gnu.org/licenses/license-list.html
+      -->
       <dependency>
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
         <version>${testng.version}</version>
       </dependency>
+      <!--
+           Logging in tests configured using groovy - but unused yet.
+      -->
       <dependency>
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy</artifactId>
