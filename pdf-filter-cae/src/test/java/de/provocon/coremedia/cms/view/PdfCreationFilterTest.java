@@ -29,6 +29,7 @@ import org.testng.annotations.Test;
  */
 @ContextConfiguration(classes = PdfFilterConfiguration.class)
 public class PdfCreationFilterTest extends org.springframework.test.context.testng.AbstractTestNGSpringContextTests {
+    
     private static final String BASE_URL = "https://www.example.com/blueprint/servlet/de";
 
     @Autowired

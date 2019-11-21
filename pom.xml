@@ -88,17 +88,20 @@
         <artifactId>graphics2d</artifactId>
         <version>${rototor.version}</version>
       </dependency>
+
+      <!-- Libraries used for testing only -->
       <!--
-        Lib's used for testing only
-        -->
-      <!-- We use testng instead of junit, because of its nicer software license -->
+           We avoid JUnit under EPL and use TestNG with ASF 2.0 instead:
+           https://www.gnu.org/licenses/license-list.html
+      -->
       <dependency>
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
         <version>${testng.version}</version>
       </dependency>
-      <!-- Currently not used, but someday you might want to configure logback, and therefor the groovy config option is
-      much nicer than good old xml -->
+      <!--
+           Logging in tests configured using groovy - but unused yet.
+      -->
       <dependency>
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy</artifactId>
