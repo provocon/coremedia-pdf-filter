@@ -25,7 +25,7 @@
     <testng.version>7.1.0</testng.version>
     <groovy.version>2.5.9</groovy.version>
     <rototor.version>0.25</rototor.version>
-    <openhtmltopdf.version>1.0.1</openhtmltopdf.version>
+    <openhtmltopdf.version>1.0.2</openhtmltopdf.version>
   </properties>
 
   <modules>
