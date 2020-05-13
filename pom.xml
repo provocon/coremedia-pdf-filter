@@ -61,6 +61,10 @@
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
           </exclusion>
+          <exclusion>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
@@ -88,6 +92,12 @@
         <groupId>de.rototor.pdfbox</groupId>
         <artifactId>graphics2d</artifactId>
         <version>${rototor.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.apache.pdfbox</groupId>
