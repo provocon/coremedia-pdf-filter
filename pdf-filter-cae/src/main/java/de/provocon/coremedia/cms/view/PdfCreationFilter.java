@@ -138,10 +138,10 @@ public class PdfCreationFilter implements Filter {
                     htmlSource = pdfResponseWrapper.getContent();
                     LOG.info("doFilter() replacing resource URLs.");
                     // TODO: Soft-Code this or even let it be switchable.
-                    htmlSource = htmlSource.replace("url(/blueprint/servlet/resource", "url(http://localhost:40980/blueprint/servlet/resource");
-                    htmlSource = htmlSource.replace("url(/resource", "url(http://localhost:42180/blueprint/servlet/resource");
-                    htmlSource = htmlSource.replace("src=\"/blueprint/servlet/resource", "src=\"http://localhost:40980/blueprint/servlet/resource");
-                    htmlSource = htmlSource.replace("src=\"/resource", "src=\"http://localhost:42180/blueprint/servlet/resource");
+                    htmlSource = htmlSource.replace("url(/blueprint/servlet/resource", "url(http://localhost:8080/blueprint/servlet/resource");
+                    htmlSource = htmlSource.replace("url(/resource", "url(http://localhost:8080/blueprint/servlet/resource");
+                    htmlSource = htmlSource.replace("src=\"/blueprint/servlet/resource", "src=\"http://localhost:8080/blueprint/servlet/resource");
+                    htmlSource = htmlSource.replace("src=\"/resource", "src=\"http://localhost:8080/blueprint/servlet/resource");
                     LOG.info("doFilter() content present");
                     if (htmlSource.indexOf(MARKER)>0) {
                         LOG.info("doFilter() writing file {}", transformedFile.getAbsolutePath());
