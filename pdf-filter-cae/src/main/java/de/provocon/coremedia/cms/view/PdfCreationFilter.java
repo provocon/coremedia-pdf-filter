@@ -98,7 +98,7 @@ public class PdfCreationFilter implements Filter {
                 pdfFilename = baseName+".pdf";
                 htmlFilename = baseName+".html";
             } catch (StringIndexOutOfBoundsException e) {
-                LOG.error("could not generate filename for pdf", e);
+                LOG.error("doFilter() could not generate filename for pdf", e);
             }
 
             try {
@@ -174,7 +174,7 @@ public class PdfCreationFilter implements Filter {
                 outputStream.flush();
                 fis.close();
                 if (LOG.isInfoEnabled()) {
-                    LOG.info("generated and delivered PDF data in {}ms, ", System.currentTimeMillis()-startTime);
+                    LOG.info("doFilter() generated and delivered PDF data in {}ms, ", System.currentTimeMillis()-startTime);
                 }
             } catch (Exception e) {
                 LOG.error("doFilter()", e);
