@@ -55,6 +55,10 @@
       <artifactId>openhtmltopdf-pdfbox</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.openhtmltopdf</groupId>
+      <artifactId>openhtmltopdf-slf4j</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
       <scope>runtime</scope>
