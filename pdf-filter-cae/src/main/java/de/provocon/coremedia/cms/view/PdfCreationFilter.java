@@ -196,12 +196,9 @@ public class PdfCreationFilter implements Filter {
 
     @PostConstruct
     public void afterPropertiesSet() {
-<<<<<<< HEAD
         pattern = Pattern.compile(configuredUriPattern);
-=======
         XRLog.setLoggingEnabled(true);
         XRLog.setLoggerImpl(new Slf4jLogger());
->>>>>>> 1904
         LOG.info("afterPropertiesSet() PDF Creation Filter with pattern '{}'", pattern.pattern());
         // Try to default to temp folder of CAE in standard deployments
         cacheFolder = System.getProperty("user.home")+"/current/temp";
