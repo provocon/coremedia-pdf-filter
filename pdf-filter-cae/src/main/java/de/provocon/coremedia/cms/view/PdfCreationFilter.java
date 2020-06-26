@@ -144,19 +144,27 @@ public class PdfCreationFilter implements Filter {
                     htmlSource = htmlSource.replace("src=\"/blueprint/servlet/resource", "src=\"http://localhost:8080/blueprint/servlet/resource");
                     htmlSource = htmlSource.replace("src=\"/resource", "src=\"http://localhost:8080/blueprint/servlet/resource");
                     LOG.info("doFilter() content present");
+                    boolean cachedHTML = false;
                     if (htmlSource.indexOf(MARKER)>0) {
                         LOG.info("doFilter() writing file {}", transformedFile.getAbsolutePath());
                         try (FileOutputStream writer = new FileOutputStream(transformedFile)) {
                             writer.write(htmlSource.getBytes("UTF-8"));
+                            cachedHTML = true;
                         }
                     }
-                    LOG.debug("doFilter() html source '{}'", htmlSource.substring(htmlSource.length()-1200));
+                    if (LOG.isDebugEnabled()) {
+                      LOG.debug("doFilter() html source '{}'", htmlSource.substring(htmlSource.length()-1200));
+                    }
                     LOG.info("doFilter() html source length {}", htmlSource.length());
                     OutputStream outputStream = new FileOutputStream(originalFile);
                     PdfRendererBuilder builder = new PdfRendererBuilder();
                     // TODO: Only A4 for now
                     builder.useDefaultPageSize(210, 297, PdfRendererBuilder.PageSizeUnits.MM);
-                    builder.withHtmlContent(htmlSource, request.getRequestURL().toString());
+                    if (cachedHTML) {
+                      builder.withFile(transformedFile);
+                    } else {
+                      builder.withHtmlContent(htmlSource, request.getRequestURL().toString());
+                    }
                     builder.toStream(outputStream);
                     builder.run();
                     LOG.info("doFilter() pdf file created");
