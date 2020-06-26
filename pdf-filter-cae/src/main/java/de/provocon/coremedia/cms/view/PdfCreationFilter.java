@@ -36,6 +36,7 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.pdfbox.io.MemoryUsageSetting;
 
 
 /**
@@ -132,6 +133,7 @@ public class PdfCreationFilter implements Filter {
                     }
                 }
                 if (process) {
+                    MemoryUsageSetting.setupTempFileOnly();                    
                     PdfResponseWrapper pdfResponseWrapper = new PdfResponseWrapper(response);
                     chain.doFilter(request, pdfResponseWrapper);
                     if (pdfResponseWrapper.getStatus()>399) {
@@ -214,6 +216,7 @@ public class PdfCreationFilter implements Filter {
         if (!(new File(cacheFolder)).exists()) {
             cacheFolder = System.getProperty("user.home");
         }
+        MemoryUsageSetting.setupTempFileOnly();
         LOG.info("afterPropertiesSet() path for caching transformed data: {}", cacheFolder);
     }
 
