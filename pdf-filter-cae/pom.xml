@@ -14,6 +14,8 @@
 
   <properties>
     <coremedia.project.extension.for>cae</coremedia.project.extension.for>
+    <compile.source.jdk>1.8</compile.source.jdk>
+    <compile.target.jdk>1.8</compile.target.jdk>
   </properties>
 
   <dependencies>
@@ -57,6 +59,16 @@
     <dependency>
       <groupId>com.openhtmltopdf</groupId>
       <artifactId>openhtmltopdf-slf4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>pdfbox</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
