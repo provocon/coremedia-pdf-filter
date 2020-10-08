@@ -13,11 +13,11 @@
   <name>Provocon PDF Filter Extension</name>
   <artifactId>pdf-filter</artifactId>
   <packaging>pom</packaging>
-  
-  <organisation>
+
+  <organization>
     <name>Provocon</name>
     <url>https://www.provocon.de/</url>
-  </organisation>
+  </organization>
 
   <properties>
     <coremedia.project.extension.name>Pdf Filter</coremedia.project.extension.name>
