@@ -73,7 +73,7 @@ public class PdfCreationFilter implements Filter {
         String requestUri = request.getRequestURI()+(StringUtils.isEmpty(query) ? "" : "?"+query);
         LOG.debug("matches({}) request uri '{}'", pattern, requestUri);
         boolean result = pattern.matcher(requestUri).find();
-        LOG.info("matches({}) {}", result, requestUri);
+        LOG.debug("matches({}) {}", result, requestUri);
         return result;
     }
 
