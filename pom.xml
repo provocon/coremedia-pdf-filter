@@ -22,12 +22,12 @@
   <properties>
     <coremedia.project.extension.name>Pdf Filter</coremedia.project.extension.name>
     <coremedia.project.extension.modelVersion>1.0</coremedia.project.extension.modelVersion>
-    <lombok.version>1.18.12</lombok.version>
+    <lombok.version>1.18.16</lombok.version>
     <testng.version>7.3.0</testng.version>
-    <groovy.version>2.5.9</groovy.version>
-    <rototor.version>0.27</rototor.version>
+    <groovy.version>2.5.14</groovy.version>
+    <rototor.version>0.29</rototor.version>
     <pdfbox.version>2.0.21</pdfbox.version>
-    <openhtmltopdf.version>1.0.4</openhtmltopdf.version>
+    <openhtmltopdf.version>1.0.5</openhtmltopdf.version>
   </properties>
 
   <modules>
@@ -54,6 +54,10 @@
           <exclusion>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>xmpbox</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
