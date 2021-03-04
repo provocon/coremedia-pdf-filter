@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Provocon.
+ * Copyright 2019-2021 Provocon.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,8 +56,11 @@ public class PdfCreationFilter implements Filter {
 
     @Value("${pdf.filter.uri.pattern}")
     private String configuredUriPattern;
-    private Pattern pattern;
+
+    @Value("${pdf.filter.cache.folder}")
     private String cacheFolder;
+
+    private Pattern pattern;
 
     @Override
     public void destroy() {
@@ -211,12 +214,12 @@ public class PdfCreationFilter implements Filter {
         XRLog.setLoggerImpl(new Slf4jLogger());
         LOG.info("afterPropertiesSet() PDF Creation Filter with pattern '{}'", pattern.pattern());
         // Try to default to temp folder of CAE in standard deployments
-        cacheFolder = System.getProperty("user.home")+"/current/temp";
+        LOG.info("afterPropertiesSet() intended path for caching transformed data: {}", cacheFolder);
         if (!(new File(cacheFolder)).exists()) {
             cacheFolder = System.getProperty("user.home");
         }
         MemoryUsageSetting.setupTempFileOnly();
-        LOG.info("afterPropertiesSet() path for caching transformed data: {}", cacheFolder);
+        LOG.info("afterPropertiesSet() net path for caching transformed data: {}", cacheFolder);
     }
 
 } // PdfCreationFilter()

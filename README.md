@@ -22,7 +22,7 @@ for feedback.
 CoreMedia Blueprints CMS-9, LiveContext 3, and Content Cloud 10 are supported.
 
 This extension can be integrated into blueprint workspaces starting from
-platform version 1707. The latest version in production use is 1904. The latest
+platform version 1707. The latest version in production use is 2010. The latest
 available version is meant for 2010. Use the corresponding branch for
 integration. Also this README.md is version specific. So switch branches before
 reading the integration details.
@@ -37,6 +37,9 @@ turn uses Apache PDF Box.
 The filter transforms the HTML code if the requested URI matches a pattern
 given by regular expressions. The default pattern is `\\?view=pdf`.
 
+The pattern can optionally be changed through the container parameter 
+`PDF_FILTER_URI_PATTERN`. (see spring details in the filter class code.)
+
 Caching is triggered, if the HTML code contains the string
 `CACHE WITHIN PROVOCON PDF FILTER FOR` followed by a caching time in seconds
 like in
@@ -45,6 +48,9 @@ like in
 CACHE WITHIN PROVOCON PDF FILTER FOR 3600s
 ```
 
+The storage path for cached PDF and HTML can optionally be configured through
+the container parameter `PDF_FILTER_CACHE_FOLDER`. (see spring details in the
+filter class code.)
 
 ## Integration
 
@@ -78,7 +84,7 @@ X-XSS-Protection: 1; mode=block
 For a quick check on a commandline you can use curl (example url): 
 
 ```
-curl -I http://localhost:40980/blueprint/servlet/corporate-de-de
+curl -I http://localhost:8080/blueprint/servlet/corporate-de-de
 ```
 
 
