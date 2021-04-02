@@ -23,7 +23,7 @@ CoreMedia Blueprints CMS-9, LiveContext 3, and Content Cloud 10 are supported.
 
 This extension can be integrated into blueprint workspaces starting from
 platform version 1707. The latest version in production use is 2010. The latest
-available version is meant for 2010. Use the corresponding branch for
+available version is meant for 2101. Use the corresponding branch for
 integration. Also this README.md is version specific. So switch branches before
 reading the integration details.
 
