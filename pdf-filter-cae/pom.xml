@@ -122,7 +122,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.0</version>
+          <version>3.0.0-M5</version>
           <configuration>
             <redirectTestOutputToFile>true</redirectTestOutputToFile>
             <systemPropertyVariables>
@@ -134,7 +134,7 @@
             <dependency>
               <groupId>org.apache.maven.surefire</groupId>
               <artifactId>surefire-testng</artifactId>
-              <version>2.22.0</version>
+              <version>3.0.0-M5</version>
             </dependency>
           </dependencies>
         </plugin>
