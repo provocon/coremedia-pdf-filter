@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Provocon.
+ * Copyright 2019-2024 Provocon.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,10 +20,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.WriteListener;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.WriteListener;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponseWrapper;
 
 
 /**
@@ -127,13 +127,6 @@ public final class PdfResponseWrapper extends HttpServletResponseWrapper {
     public void sendError(int i) throws IOException {
         status = i;
         super.sendError(i);
-    }
-
-
-    @Override
-    @Deprecated
-    public void setStatus(int i, String string) {
-        status = i;
     }
 
 
