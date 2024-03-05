@@ -13,8 +13,8 @@ footprint.
 
 ## Feedback
 
-Please use the [issues][issues] section of this repository at [GitHub][github]
-for feedback.
+Please use the [issues][issues] section of this repository at
+[Codeberg][codeberg] for feedback.
 
 
 ## Compatibility
@@ -23,7 +23,7 @@ CoreMedia Blueprints Content Cloud CMCC-11, CMCC-10, CMS-9, and LiveContext 3
 are supported.
 
 This extension can be integrated with blueprint workspaces at least up to
-platform version 2110. The extension is in daily production use. The latest
+platform version 2310. The extension is in daily production use. The latest
 versions are delivered through the branch `master` with older releases using
 separate branches.
 
@@ -63,7 +63,7 @@ Add this extension to your project's workspace as a git submodule for the CAE
 app's `extensions` directory.
 
 ```
-git submodule add https://github.com/provocon/coremedia-pdf-filter.git apps/cae/modules/extensions/pdf-filter
+git submodule add https://codeberg.org/provocon/coremedia-pdf-filter.git apps/cae/modules/extensions/pdf-filter
 ```
 
 Activate the extension using the respective CoreMedia Content Cloud activation
@@ -108,6 +108,13 @@ as a git submodule. Thus, it serves as a tool to work towards clean workspaces
 to ensure maintenance and updatebility.
 
 
+## Availability
+
+The home of this extension is the repository at [Codeberg][codeberg] with
+mirrors at [GitHub][github] and [GitLab][gitlab]. When possible, please prefer
+references to [Codeberg][codeberg].
+
+
 ## Legal and Licensing
 
 This extension itself is covered by the license given in the file "LICENSE"
@@ -120,6 +127,7 @@ CoreMedia workspace, are
 
 
 [openhtmltopdf]: https://github.com/danfickle/openhtmltopdf
-[issues]: https://github.com/provocon/coremedia-pdf-filter/issues
+[issues]: https://codeberg.org/provocon/coremedia-pdf-filter/issues
 [github]: https://github.com/provocon/coremedia-pdf-filter
 [gitlab]: https://gitlab.com/provocon/coremedia-pdf-filter
+[codeberg]: https://codeberg.org/provocon/coremedia-pdf-filter
