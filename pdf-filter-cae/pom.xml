@@ -10,6 +10,7 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
+  <name>PDF Filter Extension - CAE Part</name>
   <artifactId>pdf-filter-cae</artifactId>
 
   <properties>
@@ -26,10 +27,6 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.annotation</groupId>
-      <artifactId>jakarta.annotation-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>

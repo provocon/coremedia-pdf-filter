@@ -24,7 +24,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.regex.Pattern;
-import javax.annotation.PostConstruct;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -39,6 +38,7 @@ import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -51,7 +51,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @PropertySource("classpath:/META-INF/coremedia/component-pdf-filter.properties")
-public class PdfCreationFilter implements Filter {
+public class PdfCreationFilter implements Filter, InitializingBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(PdfCreationFilter.class);
 
@@ -216,7 +216,7 @@ public class PdfCreationFilter implements Filter {
     }
 
 
-    @PostConstruct
+    @Override
     public void afterPropertiesSet() {
         pattern = Pattern.compile(configuredUriPattern);
         XRLog.setLoggingEnabled(true);
