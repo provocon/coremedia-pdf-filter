@@ -22,7 +22,6 @@
   <properties>
     <coremedia.project.extension.name>Pdf Filter</coremedia.project.extension.name>
     <coremedia.project.extension.modelVersion>1.0</coremedia.project.extension.modelVersion>
-    <lombok.version>1.18.42</lombok.version>
     <testng.version>7.12.0</testng.version>
     <groovy.version>3.0.13</groovy.version>
     <annotations.version>1.3.5</annotations.version>
@@ -37,11 +36,6 @@
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-      </dependency>
       <dependency>
         <groupId>jakarta.annotation</groupId>
         <artifactId>jakarta.annotation-api</artifactId>

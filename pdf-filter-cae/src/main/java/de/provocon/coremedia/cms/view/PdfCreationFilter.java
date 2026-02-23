@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2024 Provocon.
+ * Copyright 2019-2026 Provocon.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,11 +33,12 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -48,10 +49,11 @@ import org.springframework.stereotype.Component;
  *
  * @author Martin Goellnitz
  */
-@Slf4j
 @Component
 @PropertySource("classpath:/META-INF/coremedia/component-pdf-filter.properties")
 public class PdfCreationFilter implements Filter {
+
+    private static final Logger LOG = LoggerFactory.getLogger(PdfCreationFilter.class);
 
     private final static String MARKER = "CACHE WITHIN PROVOCON PDF FILTER FOR";
 
