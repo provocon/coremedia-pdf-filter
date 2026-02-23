@@ -19,8 +19,8 @@ Please use the [issues][issues] section of this repository at
 
 ## Compatibility
 
-CoreMedia Blueprints Content Cloud CMCC-11, CMCC-10, CMS-9, and LiveContext 3
-are supported.
+CoreMedia Blueprints Content Cloud CMCC-13, CMCC-12, CMCC-11, CMCC-10, CMS-9,
+and LiveContext 3 are supported.
 
 This extension can be integrated with blueprint workspaces at least up to
 platform version 2310. The extension is in daily production use. The latest
