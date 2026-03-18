@@ -13,7 +13,7 @@ footprint.
 
 ## Feedback
 
-Please use the [issues][issues] section of this repository at
+Feel invited to use the [issues][issues] section of this repository at
 [Codeberg][codeberg] for feedback.
 
 
@@ -22,8 +22,8 @@ Please use the [issues][issues] section of this repository at
 CoreMedia Blueprints Content Cloud CMCC-13, CMCC-12, CMCC-11, CMCC-10, CMS-9,
 and LiveContext 3 are supported.
 
-This extension can be integrated with blueprint workspaces at least up to
-platform version 2310. The extension is in daily production use. The latest
+This extension can be integrated with blueprints workspaces, at least up to
+platform version 2512. The extension is in daily production use. The latest
 versions are delivered through the branch `master` with older releases using
 separate branches.
 
@@ -57,23 +57,81 @@ the container parameter `PDF_FILTER_CACHE_FOLDER`. (see spring details in the
 filter class code.)
 
 
+## Availability
+
+The home of this extension is the repository at [Codeberg][codeberg] with
+mirrors at [GitHub][github] and [GitLab][gitlab]. When possible, please prefer
+references to [Codeberg][codeberg].
+
+
 ## Integration
 
-Add this extension to your project's workspace as a git submodule for the CAE
-app's `extensions` directory.
+Add this extension to your project's workspace as a git submodule or git subtree
+for the CAE app's `extensions` directory. In either case, you will have to
+activate the extension afterwards.
+
+### Integrate and maintain Submodule
+
+When using the canonical home of this project, the submodule would be added
+with the following command:
 
 ```
 git submodule add https://codeberg.org/provocon/coremedia-pdf-filter.git apps/cae/modules/extensions/pdf-filter
 ```
 
+If you are not on the latest release, checkout the relevant branch:
+
+```
+cd apps/cae/modules/extensions/pdf-filter
+git checkout cmcc-12
+cd ../../../../..
+git commit -m  "PDF-Filter Extension integrated" apps/cae/modules/extensions/pdf-filter apps/cae/modules/extensions/pdf-filter
+```
+
+With this integration method, you will have to issue `git fetch` and
+`git rebase` in case of an update of the extension and commit the new reference
+in the blueprints workspace.
+
+```
+cd apps/cae/modules/extensions/pdf-filter
+git fetch
+git rebase
+cd ../../../../..
+git commit -m  "PDF-Filter Extension updated" apps/cae/modules/extensions/pdf-filter apps/cae/modules/extensions/pdf-filter
+```
+
+### Integrate and maintain Subtree
+
+When using the canonical home of this project, the subtree would be added
+with the following command:
+
+```
+git subtree add --prefix apps/cae/modules/extensions/pdf-filter https://codeberg.org/provocon/coremedia-pdf-filter.git master --squash
+```
+
+This way, you will have to pull the respective branch in case of updates of
+the PDF-Filter extension.
+
+```
+git subtree pull --prefix apps/cae/modules/extensions/pdf-filter https://codeberg.org/provocon/coremedia-pdf-filter.git master --squash
+```
+
+If you are not using the latest release, you will have to issue the
+corresponding branch in each of the commands every time.
+
+```
+git subtree add --prefix apps/cae/modules/extensions/pdf-filter https://codeberg.org/provocon/coremedia-pdf-filter.git cmcc-12 --squash
+```
+
+### Activation
+
 Activate the extension using the respective CoreMedia Content Cloud activation
-scheme for the version in use, like e.g. the management tool for some
+scheme for the version in use, like e.g. the management tool for recent
 releases:
 
 ```
 mvn extensions:sync -Denable=pdf-filter -f workspace-configuration/extensions/pom.xml
 ```
-
 
 ## Test
 
@@ -105,14 +163,8 @@ directory of your CAE components - live or in preview.
 
 This extension mostly serves as an internal example of an extension separated
 as a git submodule. Thus, it serves as a tool to work towards clean workspaces
-to ensure maintenance and updatebility.
-
-
-## Availability
-
-The home of this extension is the repository at [Codeberg][codeberg] with
-mirrors at [GitHub][github] and [GitLab][gitlab]. When possible, please prefer
-references to [Codeberg][codeberg].
+to ensure easy maintenance and update security. But still, it stems from a root
+which was in daily production use for years.
 
 
 ## Legal and Licensing
